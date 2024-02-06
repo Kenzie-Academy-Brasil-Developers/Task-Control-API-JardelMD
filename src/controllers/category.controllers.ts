@@ -13,7 +13,7 @@ export class CategoryControllers {
     async delete(req: Request, res: Response) {
         const categoryServices = new CategoryServices();
 
-        await categoryServices.delete(Number(req.params.id));
+        await categoryServices.delete(res.locals.category.id);
 
         return res.status(204).json();
     }

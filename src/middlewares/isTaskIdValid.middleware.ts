@@ -8,11 +8,12 @@ export class IsTasksIdValid {
 
       const task = await prisma.task.findFirst({
          where: { id: Number(id) },
+         include: { category: true }
       });
 
-      if(!task){
-        throw new AppError(404, "Task not found");
-      }
+      if (!task) {
+         throw new AppError(404, "Task not found");
+      };
 
       res.locals.task = task;
 
