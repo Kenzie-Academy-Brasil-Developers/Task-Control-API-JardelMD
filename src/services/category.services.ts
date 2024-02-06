@@ -3,9 +3,7 @@ import { TCategory, TCategoryCreate } from "../schemas/categories.schema";
 
 export class CategoryServices {
     async create(body: TCategoryCreate): Promise<TCategory> {
-        const data = await prisma.category.create({ data: body });
-
-        return data;
+        return await prisma.category.create({ data: body });
     }
 
     async delete(categoryId: number): Promise<void> {

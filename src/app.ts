@@ -1,7 +1,7 @@
 import "express-async-errors";
 import express, { json } from "express";
 import helmet from "helmet";
-import { HandleErrors } from "./middlewares/handleErrors";
+import { HandleErrors } from "./middlewares/handleErrors.middleware";
 import { categoryRouter } from "./routes/categories.routes";
 import { taskRouter } from "./routes/tasks.routes";
 

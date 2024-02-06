@@ -13,7 +13,7 @@ export class TaskServices {
         if (!search) {
             return await prisma.task.findMany({
                 include: { category: true }
-            })
+            });
         }
         const data = await prisma.task.findMany({
             where: {
