@@ -13,6 +13,6 @@ export class HandleErrors {
         }
 
         console.log(error);
-        return res.status(403).json({ message: "Internal server error" });
+        return res.status(500).json({ message: "Internal server error" });
     }
 }
