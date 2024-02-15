@@ -46,12 +46,20 @@ export class TaskServices {
         if(!userId){
             throw new AppError(403, "This user is not the task owner");
         }
+        const idTask = await prisma.task.findFirst({where: {id}});
+        if(idTask?.userId !== userId){
+            throw new AppError(403, "This user is not the task owner");
+        }
         const data = await prisma.task.update({ where: { id, userId:userId }, data: {...body, userId} });
         return data;
     };
 
     public async delete(id: number, userId?: number): Promise<void> {
         if(!userId){
+            throw new AppError(403, "This user is not the task owner");
+        }
+        const idTask = await prisma.task.findFirst({where: {id}});
+        if(idTask?.userId !== userId){
             throw new AppError(403, "This user is not the task owner");
         }
         await prisma.task.delete({ where: { id , userId: userId} });
