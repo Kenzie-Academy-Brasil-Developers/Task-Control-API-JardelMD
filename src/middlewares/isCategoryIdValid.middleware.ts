@@ -27,7 +27,7 @@ export class IsCategoryIdValid {
          });
 
          if (!category) {
-            throw new AppError(403, "Category not found");
+            throw new AppError(404, "Category not found");
          };
       }
 

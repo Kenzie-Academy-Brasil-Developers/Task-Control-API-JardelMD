@@ -6,7 +6,9 @@ export class TaskControllers {
     public async create(req: Request, res: Response): Promise<Response> {
         const taskServices = new TaskServices();
 
-        const response = await taskServices.create(req.body);
+        const userId = res.locals.decode.id;
+        
+        const response = await taskServices.create(req.body, userId);
 
         return res.status(201).json(response);
     }
@@ -14,22 +16,30 @@ export class TaskControllers {
     public async findMany(req: Request, res: Response): Promise<Response> {
         const taskServices = new TaskServices();
         const { category } = req.query;
+        const userId = res.locals.decode.id;
 
-        const response = await taskServices.findMany(category);
+        const response = await taskServices.findMany(userId, category);
 
         return res.status(200).json(response);
     }
 
     public async findOne(req: Request, res: Response): Promise<Response> {
-        const task = res.locals.task
+        const taskServices = new TaskServices();
+        const task = res.locals.task.id;
+       
+        const userId = res.locals.decode.id;
 
-        return res.status(200).json(task);
+        const response = await taskServices.findOne(task, userId);
+
+        return res.status(200).json(response);
     }
 
     public async update(req: Request, res: Response): Promise<Response> {
         const taskServices = new TaskServices();
 
-        const response = await taskServices.update(res.locals.task.id, req.body);
+        const userId = res.locals.decode.id;
+
+        const response = await taskServices.update(res.locals.task.id, req.body, userId);
 
         return res.status(200).json(response);
     }
@@ -37,7 +47,7 @@ export class TaskControllers {
     public async delete(req: Request, res: Response): Promise<Response> {
         const taskServices = new TaskServices();
 
-        await taskServices.delete(res.locals.task.id);
+        await taskServices.delete(res.locals.task.id, res.locals.decode.id);
 
         return res.status(204).json();
     }

@@ -8,7 +8,7 @@ export class HandleErrors {
         if (error instanceof AppError) {
             return res.status(error.statusCode).json({ message: error.message });
         }
-        //Talvez tenha que trocar por um statusCode 409 no ZodError
+        
         if (error instanceof ZodError) {
             return res.status(400).json(error);
         }

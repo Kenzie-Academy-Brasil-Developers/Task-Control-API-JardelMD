@@ -10,5 +10,6 @@ export const categoryRouter = Router();
 const categoryControllers = new CategoryControllers();
 
 categoryRouter.use("/", VerifyToken.execute);
+
 categoryRouter.post("/", ValidateBody.execute(categoryCreateSchema), categoryControllers.create);
 categoryRouter.delete("/:id", IsCategoryIdValid.execute, categoryControllers.delete);

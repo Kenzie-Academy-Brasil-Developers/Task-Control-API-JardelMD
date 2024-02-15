@@ -5,7 +5,7 @@ export class UserControllers{
 
     async register(req: Request, res: Response): Promise<Response>{
         const userServices = new UserServices();
-
+    
         const response = await userServices.register(req.body);
 
         return res.status(201).json(response);
