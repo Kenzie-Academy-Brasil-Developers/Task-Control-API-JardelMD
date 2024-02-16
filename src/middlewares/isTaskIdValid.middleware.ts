@@ -18,5 +18,5 @@ export class IsTasksIdValid {
       res.locals.task = task;
 
       next();
-   }
+   };
 }

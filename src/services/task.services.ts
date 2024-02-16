@@ -6,7 +6,7 @@ export class TaskServices {
     public async create(body: TTaskCreate, userId?: number): Promise<TTask> {
         if(!userId){
             throw new AppError(403, "This user is not the task owner");
-        }
+        };
         const data = await prisma.task.create({
             data: {...body, userId: userId}
         });
@@ -19,7 +19,7 @@ export class TaskServices {
                 where: {userId: userId},
                 include: { category: true }
             });
-        }
+        };
         const data = await prisma.task.findMany({
             where: {
                 category: {
@@ -34,7 +34,7 @@ export class TaskServices {
     public async findOne(id: number, userId?: number): Promise<TTask | null> {
         if(!userId){
             throw new AppError(403, "This user is not the task owner");
-        }
+        };
         const data = await prisma.task.findFirst({
             where: { id: id, userId:userId },
             include: { category: true }
@@ -45,11 +45,11 @@ export class TaskServices {
     public async update(id: number, body: TTaskUpdate, userId?: number): Promise<TTask | null> {
         if(!userId){
             throw new AppError(403, "This user is not the task owner");
-        }
+        };
         const idTask = await prisma.task.findFirst({where: {id}});
         if(idTask?.userId !== userId){
             throw new AppError(403, "This user is not the task owner");
-        }
+        };
         const data = await prisma.task.update({ where: { id, userId:userId }, data: {...body, userId} });
         return data;
     };
@@ -57,11 +57,11 @@ export class TaskServices {
     public async delete(id: number, userId?: number): Promise<void> {
         if(!userId){
             throw new AppError(403, "This user is not the task owner");
-        }
+        };
         const idTask = await prisma.task.findFirst({where: {id}});
         if(idTask?.userId !== userId){
             throw new AppError(403, "This user is not the task owner");
-        }
+        };
         await prisma.task.delete({ where: { id , userId: userId} });
     };
 }

@@ -8,8 +8,8 @@ export class IsEmailAlreadyRegistered {
 
         if (user) {
             throw new AppError(409, "This email is already registered");
-        }
+        };
 
         next();
-    }
+    };
 }

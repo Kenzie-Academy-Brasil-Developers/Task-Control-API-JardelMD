@@ -8,7 +8,7 @@ export class CategoryServices {
             throw new AppError(403, "This user is not the category owner");
         }
         return await prisma.category.create({ data: {...body, userId: userId} });
-    }
+    };
 
     public async delete(categoryId: number, userId?: number): Promise<void> { 
         if(!userId){
@@ -16,9 +16,9 @@ export class CategoryServices {
         }     
         const idCategory = await prisma.category.findFirst({where: {id:categoryId}}) ;
         if(idCategory?.userId!== userId){
-            throw new AppError(403, "This user is not the category owner")
+            throw new AppError(403, "This user is not the category owner");
         }     
 
         await prisma.category.delete({ where: { id: categoryId , userId:userId}});
-    }
+    };
 }

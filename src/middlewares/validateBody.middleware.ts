@@ -8,6 +8,6 @@ export class ValidateBody {
             req.body = schema.parse(req.body);
 
             return next();
-        }
-    }
+        };
+    };
 }

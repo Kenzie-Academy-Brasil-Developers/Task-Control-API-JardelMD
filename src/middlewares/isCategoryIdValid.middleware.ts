@@ -29,7 +29,7 @@ export class IsCategoryIdValid {
          if (!category) {
             throw new AppError(404, "Category not found");
          };
-      }
+      };
 
       next();
    }

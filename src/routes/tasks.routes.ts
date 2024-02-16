@@ -16,6 +16,7 @@ taskRouter.post("/", ValidateBody.execute(taskCreateSchema), IsCategoryIdValid.e
 taskRouter.get("/", taskControllers.findMany);
 
 taskRouter.use("/:id", IsTasksIdValid.execute);
+
 taskRouter.get("/:id", taskControllers.findOne);
 taskRouter.patch("/:id", ValidateBody.execute(taskUpdateSchema), taskControllers.update);
 taskRouter.delete("/:id", taskControllers.delete);

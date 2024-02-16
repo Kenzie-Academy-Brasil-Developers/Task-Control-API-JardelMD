@@ -8,7 +8,7 @@ export class VerifyToken {
 
         if (!authorization) {
             throw new AppError(401, "Token is required");
-        }
+        };
 
         const token = authorization?.replace("Bearer ", "");
 
@@ -17,5 +17,5 @@ export class VerifyToken {
         res.locals.decode = jwt.decode(token);
 
         next();
-    }
+    };
 }

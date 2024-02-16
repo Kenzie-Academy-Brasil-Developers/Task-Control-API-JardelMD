@@ -30,13 +30,13 @@ export class UserServices {
 
         if (!user) {
             throw new AppError(404, "User not exists");
-        }
+        };
 
         const compare = await bcrypt.compare(body.password, user.password);
 
         if (!compare) {
             throw new AppError(401, "Email and password doesn't match");
-        }
+        };
 
         const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET as string, {
             expiresIn: "12h",
@@ -45,12 +45,12 @@ export class UserServices {
         return {
             accessToken: token,
             user: userReturnSchema.parse(user)
-        }
-    }
+        };
+    };
 
     async getUser(id: number): Promise<TUserReturn> {
         const user = await prisma.user.findFirst({ where: { id } });
 
-        return userReturnSchema.parse(user)
-    }
+        return userReturnSchema.parse(user);
+    };
 }
