@@ -13,8 +13,7 @@
     "migrate:dev": "dotenv -e .env.develop -- npx prisma migrate dev",
     "test": "dotenv -e .env.test -- vitest",
     "migrate:test": "dotenv -e .env.test -- npx prisma migrate dev",
-    "migrate-dev:deploy": "dotenv -e .env.dev -- npx prisma migrate deploy",
-    "migrate-test:deploy": "dotenv -e .env.test -- npx prisma migrate deploy"
+    "migrate:deploy": "dotenv -e .env.develop -- npx prisma migrate deploy"
   },
   "keywords": [],
   "author": "",
